@@ -126,7 +126,7 @@ function saveVolumeAnnotations(successcb) {
     
     setTimeout(function() {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", '/annotate/entity-annotate', true);
+        xmlHttp.open("POST", '/annotate/payer-annotate', true);
         xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         var params = 'vol=' + selvol + '&' + 'annot=' + serialString ;
         xmlHttp.onreadystatechange = function () {

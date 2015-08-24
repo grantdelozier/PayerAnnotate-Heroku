@@ -142,7 +142,7 @@ app.post('/annotate/getannot', function(request, response){
 	}
 });
 
-app.post('/annotate/entity-annotate', function(request, response) {
+app.post('/annotate/payer-annotate', function(request, response) {
 	if (request.session.username && request.session.password != null) {
 		pg.connect(process.env.DATABASE_URL+"?ssl=true", function(err, client, done) {
 			if (err) {
@@ -277,7 +277,7 @@ app.post('/create-user', function(req, http_response) {
 	});
 });
 
-app.get('/annotate/entity-annotate', function(req, response) {
+app.get('/annotate/payer-annotate', function(req, response) {
 	console.log(req.body);
 	if (req.session.username && req.session.password != null) {
 		console.log(req.session.username + " navigating to entity-annotate page")
