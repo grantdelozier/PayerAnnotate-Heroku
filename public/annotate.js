@@ -257,8 +257,8 @@ function loadVolumeText(vol) {
                         return;
                     }
                     else {
-                        //console.log( xmlHttp2.responseText );
-                        if (JSON.parse(xmlHttp2.responseText).length > 0 ){
+                        console.log( xmlHttp2.responseText );
+                        if (typeof xmlHttp2.responseText != undefined){
                             var results = JSON.parse(xmlHttp2.responseText)['content']
                             loadVolumeAnnotations(results);
                         }
