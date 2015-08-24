@@ -246,7 +246,7 @@ function loadVolumeText(vol) {
             }
             else {
                 console.log( xmlHttp.responseText );
-                $("#col2text").html(JSON.parse(xmlHttp.responseText))
+                $("#col2text").html(xmlHttp.responseText)
                 //$("#col2text").html(JSON.parse(xmlHttp.responseText)['content'])
                 var xmlHttp2 = new XMLHttpRequest();
                 xmlHttp2.open("POST", '/annotate/getannot', false);
