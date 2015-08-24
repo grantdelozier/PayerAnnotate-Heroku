@@ -53,9 +53,12 @@
         }
 
         function getNERPage(){
-            setTimeout(function() {
+
+            window.location = "/annotate/payer-annotate"
+
+            /*setTimeout(function() {
                 var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", '/annotate/entity-annotate', true );
+                xmlHttp.open("GET", '/annotate/payer-annotate', true );
                 if ( 4 != xmlHttp.readyState ) {
                         return;
                 }
@@ -69,7 +72,7 @@
                 }
                 xmlHttp.responseType = "document";
                 xmlHttp.send( null );
-            }, 0);
+            }, 0);*/
         }
     
 
