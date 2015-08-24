@@ -258,6 +258,7 @@ function loadVolumeText(vol) {
                     }
                     else {
                         console.log( xmlHttp2.responseText );
+                        console.log(typeof xmlHttp2.responseText )
                         if (typeof xmlHttp2.responseText != undefined){
                             var results = JSON.parse(xmlHttp2.responseText)['content']
                             loadVolumeAnnotations(results);
