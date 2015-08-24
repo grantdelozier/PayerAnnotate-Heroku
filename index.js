@@ -246,20 +246,25 @@ app.post('/create-user', function(req, http_response) {
 							console.error(err);
 							http_response.send("Error:" + err);
 						}else{
-							smtpTransport.sendMail(mail, function(error, response){
-							    if(error){
-							        console.log(error);
-							        response.send(error);
-							    }else{
-							        console.log("Message sent: " + response.message);
-							        var hash = bcrypt.hashSync(req.body.password, salt);
+							if (typeof smtpTransport != undefined) {
 
-							        http_response.send("Confirmation Email has been sent to " + req.body.user);
-							    	
-							    }
+								smtpTransport.sendMail(mail, function(error, response){
+								    if(error){
+								        console.log(error);
+								        http_response.send(error);
+								    }else{
+								        console.log("Message sent: " + response.message);
+								        var hash = bcrypt.hashSync(req.body.password, salt);
 
-							    smtpTransport.close();
-							});
+								        http_response.send("Confirmation Email has been sent to " + req.body.user);
+								    	
+								    }
+								    smtpTransport.close();
+								});
+							}
+							else{
+								http_response.send("ERROR: There was an issue in starting the account creation mail server, check logs");
+							}
 						}
 					});
 				}else{
