@@ -304,7 +304,7 @@ app.post('/annotate/gettext', function(req, response) {
 						console.error(err2)
 					}
 					else{
-						response.send(escape(result.rows[0]));
+						response.send(escape(result.rows[0]['content']));
 					}
 				});
 			}
