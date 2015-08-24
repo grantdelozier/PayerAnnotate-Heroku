@@ -81,12 +81,12 @@ app.get('/login-status', function(request, response) {
 });
 
 app.get('/payer-annotate', function(request, response) {
-	response.sendFile('./annotate/payer-annotate.html');
+	response.sendFile(path.join(annotateDir, 'payer-annotate.html'));
 });
 
 app.get('/create-user', function(request, response) {
 	//response.redirect('./annotate/create-user.html');
-	response.sendFile('./annotate/create-user.html');
+	response.sendFile(path.join(annotateDir, 'create-user.html'));
 });
 
 //Verify a user account given a verification get request
