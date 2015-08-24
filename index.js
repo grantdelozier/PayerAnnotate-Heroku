@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('cookie-session');
 var mailer = require("nodemailer");
 var path = require('path');
+var escape = require("html-escape");
 
 var pg = require('pg');
 
@@ -303,7 +304,7 @@ app.post('/annotate/gettext', function(req, response) {
 						console.error(err2)
 					}
 					else{
-						response.send(result.rows[0]);
+						response.send(escape(result.rows[0]));
 					}
 				});
 			}
