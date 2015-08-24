@@ -245,7 +245,7 @@ function loadVolumeText(vol) {
                 return;
             }
             else {
-                console.log( xmlHttp.responseText );
+                //console.log( xmlHttp.responseText );
                 $("#col2text").html(htmlEscape(xmlHttp.responseText))
                 //$("#col2text").html(JSON.parse(xmlHttp.responseText)['content'])
                 var xmlHttp2 = new XMLHttpRequest();
@@ -258,9 +258,13 @@ function loadVolumeText(vol) {
                     }
                     else {
                         //console.log( xmlHttp2.responseText );
-                        var results = JSON.parse(xmlHttp2.responseText)['content']
+                        if (JSON.parse(xmlHttp2.responseText).length > 0 ){
+                            var results = JSON.parse(xmlHttp2.responseText)['content']
+                            loadVolumeAnnotations(results);
+                        }
+                        
                         console.log(results)
-                        loadVolumeAnnotations(results);
+                        
                         return;
                     }
                 };
