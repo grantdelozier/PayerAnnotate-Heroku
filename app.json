@@ -1,0 +1,6 @@
+{
+  "name": "PayerAnnotate-Heroku",
+  "description": "An application for collecting Named Entity Recognition data for Healthcare Payers using Express 4",
+  "repository": "https://github.com/grantdelozier/PayerAnnotate-Heroku",
+  "keywords": ["node", "express", "PayerAnnotate"]
+}
