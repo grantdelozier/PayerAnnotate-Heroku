@@ -177,16 +177,7 @@ app.post('/annotate/payer-annotate', function(request, response) {
 
 app.get('/annotate/getpayertablerows', function(request, response){
 	if (request.session.username && request.session.password != null) {
-
-	}
-	else{
-		response.send("Error: "+ "You are currently not logged in. Cannot get Table Rows")
-	}
-});
-
-app.get('/annotate/getvoltablerows', function(request, response){
-	if (request.session.username && request.session.password != null) {
-		pg.connect(process.env.DATABASE_URL+"?ssl=true", function(err, client, done) {
+		pg.connect(process.env.DATABASE_URL, function(err, client, done) {
 			if (err) {
 				console.error(err)
 				response.send("Error: Problem Connecting to DB")
@@ -208,7 +199,33 @@ app.get('/annotate/getvoltablerows', function(request, response){
 	else{
 		response.send("Error: "+ "You are currently not logged in. Cannot get Table Rows")
 	}
-})
+});
+
+app.get('/annotate/getvoltablerows', function(request, response){
+	if (request.session.username && request.session.password != null) {
+		pg.connect(process.env.DATABASE_URL+"?ssl=true", function(err, client, done) {
+			if (err) {
+				console.error(err)
+				response.send("ERROR Connecting to DB")
+				//response.send("Error:" + err)
+			}
+			else{
+				client.query("SELECT id, title from article_texts;", function(err2, result){
+					if (err2){
+						response.send("Error querying the DB");
+					}
+					else{
+						response.send(result.rows)
+					}
+				});
+			}
+			done();
+		});
+	}
+	else{
+		response.send("Error: "+ "You are currently not logged in. Cannot get Table Rows")
+	}
+});
 
 app.post('/create-user', function(req, http_response) {
 	//console.log(process.env.DATABASE_URL);
