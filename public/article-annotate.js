@@ -25,7 +25,8 @@ $(document).ready(function() {
         });
 
     var table_payers = $('#payer_table').DataTable({
-        "pageLength": 20
+        "pageLength": 20,
+        "bLengthChange": false,
     }); 
 
     $('#vol_table tbody').on('click', 'tr', function() {
