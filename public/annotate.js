@@ -305,6 +305,36 @@ function loadVolumeText(vol) {
     })*/
 }
 
+function getPayerTableRows(table){
+    setTimeout(function() {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", '/annotate/getpayertablerows', false);
+
+        xmlHttp.onreadystatechange = function () {
+            if ( 4 != xmlHttp.readyState ) {
+                return;
+            }
+            else {
+                //console.log( xmlHttp.responseText );
+                var logdiv = document.getElementById('logtext');
+                if (xmlHttp.responseText.indexOf("Error:") > 0) {
+                    window.alert("There was an error loading the voltable contents. Check logs")
+                }
+                else{
+                    var json_response = JSON.parse(xmlHttp.responseText);
+                    for (var i = 0; i < json_response.length; i++) {
+                        var id = json_response[i]['key']
+                        var title = json_response[i]['names']
+                        table.row.add([id, title]).draw();
+                    }
+                }
+            }
+        };
+        xmlHttp.send( null);
+    }, 0);
+
+}
+
 function getVolTableRows(table){
 
     setTimeout(function() {

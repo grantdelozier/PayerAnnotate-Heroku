@@ -24,14 +24,18 @@ $(document).ready(function() {
         "pageLength": 20
         });
 
+    var table_payers = $('#payer_table').DataTable({
+        "pageLength": 20
+    }); 
+
     $('#vol_table tbody').on('click', 'tr', function() {
         checkVol(this, '#vol_table')
     } );
  
     // FIXME: What does this do?
-    $('#button').click( function() {
+    /*$('#button').click( function() {
         table.row('.selected').remove().draw( false )
-    } );
+    } );*/
 
     $("#col2text").on("cut paste", function(e) {
         e.preventDefault()
@@ -310,6 +314,8 @@ function commonInit() {
 
     var table = $('#vol_table').DataTable()
     getVolTableRows(table)
+    var table_payers = $('#payer_table').DataTable();
+    getPayerTableRows(table_payers)
 
 }
 
