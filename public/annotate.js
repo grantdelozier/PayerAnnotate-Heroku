@@ -245,8 +245,8 @@ function loadVolumeText(vol) {
                 return;
             }
             else {
-                console.log( xmlHttp.responseText );
-                console.log(unescape(xmlHttp.responseText));
+                //console.log( xmlHttp.responseText );
+                //console.log(unescape(xmlHttp.responseText));
                 //console.log( htmlEscape(xmlHttp.responseText) )
                 $("#col2text").html(xmlHttp.responseText)
                 //$("#col2text").html(JSON.parse(xmlHttp.responseText)['content'])
