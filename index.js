@@ -196,12 +196,13 @@ app.get('/annotate/getvoltablerows', function(request, response){
 		pg.connect(process.env.DATABASE_URL+"?ssl=true", function(err, client, done) {
 			if (err) {
 				console.error(err)
-				response.send("Error:" + err)
+				response.send("ERROR Connecting to DB")
+				//response.send("Error:" + err)
 			}
 			else{
 				client.query("SELECT id, title from article_texts;", function(err2, result){
 					if (err2){
-						response.send("Error:"+ err2)
+						response.send("Error querying the DB");
 					}
 					else{
 						response.send(result.rows)
