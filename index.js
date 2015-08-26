@@ -55,7 +55,7 @@ app.post('/logout', function(req, response) {
 	req.session = null;
 	//response.send(path.join(annotateDir, 'login.html'));
 	//response.redirect('/login');
-	response.send(path.join(annotateDir, 'login.html'));
+	response.sendFile(path.join(annotateDir, 'login.html'));
 });
 
 app.get('/login-status', function(request, response) {

@@ -94,6 +94,8 @@
     <script>
         function endSession1() {
             console.log("Posting")
+            window.location = "/logout"
+            /*
             var xmlHttp = new XMLHttpRequest();
             xmlHttp.open("POST", '/logout', true );
             if ( 4 != xmlHttp.readyState ) {
@@ -103,7 +105,7 @@
                 console.log(xmlHttp.responseText)
                 window.location.href = "https://payer-annotate.herokuapp.com/login"
             }
-            xmlHttp.send();
+            xmlHttp.send();*/
         }
 
         function endSession2() {
