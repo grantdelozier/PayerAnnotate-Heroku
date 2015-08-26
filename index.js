@@ -50,7 +50,7 @@ app.get('/login', function(req, response) {
 	response.sendFile(path.join(annotateDir, 'login.html'));
 });
 
-app.post('/logout', function(req, response) {
+app.get('/logout', function(req, response) {
 	console.log("Logging out ", req.session.username);
 	req.session = null;
 	//response.send(path.join(annotateDir, 'login.html'));
