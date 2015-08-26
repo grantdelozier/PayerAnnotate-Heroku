@@ -50,12 +50,12 @@ app.get('/login', function(req, response) {
 	response.sendFile(path.join(annotateDir, 'login.html'));
 });
 
-app.get('/logout', function(req, response) {
-	console.log("Logging out ", req.session.usernmae);
+app.post('/logout', function(req, response) {
+	console.log("Logging out ", req.session.username);
 	req.session = null;
-	response.send(path.join(annotateDir, 'login.html'));
+	//response.send(path.join(annotateDir, 'login.html'));
 	//response.redirect('/login');
-	//response.sendFile(path.join(annotateDir, 'login.html'));
+	response.send(path.join(annotateDir, 'login.html'));
 });
 
 app.get('/login-status', function(request, response) {
