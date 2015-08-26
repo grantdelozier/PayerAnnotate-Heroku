@@ -235,49 +235,47 @@ function loadVolumeText(vol) {
     selvol = vol
     console.log("selvol", selvol)
 
-    setTimeout(function() {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", '/annotate/gettext', false);
-        xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        var params = 'vol=' + selvol ;
-        xmlHttp.onreadystatechange = function () {
-            if ( 4 != xmlHttp.readyState ) {
-                return;
-            }
-            else {
-                //console.log( xmlHttp.responseText );
-                //console.log(unescape(xmlHttp.responseText));
-                //console.log( htmlEscape(xmlHttp.responseText) )
-                $("#col2text").html(xmlHttp.responseText)
-                //$("#col2text").html(JSON.parse(xmlHttp.responseText)['content'])
-                var xmlHttp2 = new XMLHttpRequest();
-                xmlHttp2.open("POST", '/annotate/getannot', false);
-                xmlHttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                var params = 'vol=' + selvol ;
-                xmlHttp2.onreadystatechange = function () {
-                    if ( 4 != xmlHttp.readyState ) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", '/annotate/gettext', false);
+    xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    var params = 'vol=' + selvol ;
+    xmlHttp.onreadystatechange = function () {
+        if ( 4 != xmlHttp.readyState ) {
+            return;
+        }
+        else {
+            //console.log( xmlHttp.responseText );
+            //console.log(unescape(xmlHttp.responseText));
+            //console.log( htmlEscape(xmlHttp.responseText) )
+            $("#col2text").html(xmlHttp.responseText)
+            //$("#col2text").html(JSON.parse(xmlHttp.responseText)['content'])
+            var xmlHttp2 = new XMLHttpRequest();
+            xmlHttp2.open("POST", '/annotate/getannot', false);
+            xmlHttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            var params = 'vol=' + selvol ;
+            xmlHttp2.onreadystatechange = function () {
+                if ( 4 != xmlHttp.readyState ) {
+                    return;
+                }
+                else {
+                    //console.log(xmlHttp2.responseText)
+                    if (xmlHttp2.responseText.length > 0){
+                        var results = JSON.parse(xmlHttp2.responseText)['content']
+                        loadVolumeAnnotations(results);
                         return;
                     }
-                    else {
-                        //console.log(xmlHttp2.responseText)
-                        if (xmlHttp2.responseText.length > 0){
-                            var results = JSON.parse(xmlHttp2.responseText)['content']
-                            loadVolumeAnnotations(results);
-                            return;
-                        }
-                        else{
-                            return;
-                        }
-
+                    else{
+                        return;
                     }
-                };
-                xmlHttp2.send( params );
-                
-                return;
-            }
-        };
-        xmlHttp.send( params );
-    }, 0);
+
+                }
+            };
+            xmlHttp2.send( params );
+            
+            return;
+        }
+    };
+    xmlHttp.send( params );
 
 
 
