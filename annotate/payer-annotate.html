@@ -115,6 +115,7 @@
             }, 0);
         }
 
+        //endsession3 can be used if you want to replace the html of page without changing the url
         function endSession3(){
             getHTML( '/logout', function (response) { 
                 document.documentElement.innerHTML = response.documentElement.innerHTML;
