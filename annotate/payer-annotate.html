@@ -93,8 +93,9 @@
     </style>
     <script>
         function endSession1() {
+            console.log("Posting")
             var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("GET", '/logout', true );
+            xmlHttp.open("POST", '/logout', true );
             if ( 4 != xmlHttp.readyState ) {
                 return;
             }
