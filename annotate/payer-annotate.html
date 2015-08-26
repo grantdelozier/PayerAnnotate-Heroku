@@ -110,7 +110,16 @@
                     console.log("end session started 2")
                     var xmlHttp = new XMLHttpRequest();
                     xmlHttp.open("GET", '/logout', true );
-                    if ( 4 != xmlHttp.readyState ) {
+
+                    xmlHttp.onload = function() {
+                        if ( callback && typeof( callback ) === 'function' ) {
+                            console.log(this.responseText);
+                            console.log(this.responseXML);
+                            //callback( this.responseXML );
+                            window.location.href = "https://payer-annotate.herokuapp.com/login"
+                        }
+                    }
+                    /*if ( 4 != xmlHttp.readyState ) {
                             return;
                     }
                     else {
@@ -122,7 +131,7 @@
                         //return xmlHttp.responseText
                         console.log(xmlHttp.responseText)
                         window.location.href = "https://payer-annotate.herokuapp.com/login"
-                    }
+                    }*/
                     //xmlHttp.responseType = "document";
                     xmlHttp.send( null );
             }, 0);
