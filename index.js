@@ -53,7 +53,7 @@ app.get('/login', function(req, response) {
 app.get('/logout', function(req, response) {
 	console.log("Logging out ", req.session.usernmae);
 	req.session = null;
-	response.send(path.join(annotateDir, 'login.html');
+	response.send(path.join(annotateDir, 'login.html'));
 	//response.redirect('/login');
 	//response.sendFile(path.join(annotateDir, 'login.html'));
 });
