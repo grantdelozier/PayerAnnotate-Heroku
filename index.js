@@ -31,7 +31,7 @@ function authenticate_password(user, password) {
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
-app.use(session({keys:['annotator'], maxAge:14400000}));
+app.use(session({keys:['annotator'], maxAge:14400000, rolling: true}));
 app.use(bodyParser());
 
 var annotateDir = path.join(__dirname, 'annotate')
@@ -160,7 +160,7 @@ app.post('/annotate/payer-annotate', function(request, response) {
 								}
 								else{
 									console.log("Saved Entry by ", request.session.username);
-									response.send("Saving Successful")
+									response.send("Saving Successful on vol " + request.body.vol)
 								}
 							});
 						}
@@ -257,18 +257,21 @@ app.post('/create-user', function(req, http_response) {
 			        	if (err) { 
 							console.error(err);
 							http_response.send("Error:" + err);
+							done();
 						}else{
 							if (typeof smtpTransport != undefined) {
 
 								smtpTransport.sendMail(mail, function(error, response){
 								    if(error){
 								        console.log(error);
+								        done();
 								        http_response.send(error);
 								    }else{
 								        console.log("Message sent: " + response.message);
 								        var hash = bcrypt.hashSync(req.body.password, salt);
 
 								        http_response.send("Confirmation Email has been sent to " + req.body.user);
+								        done();
 								    	
 								    }
 								    smtpTransport.close();
@@ -313,9 +316,11 @@ app.post('/annotate/gettext', function(req, response) {
 				client.query("SELECT content from article_texts where id = $1;", [req.body.vol], function(err2, result){
 					if (err2){
 						console.error(err2)
+						done();
 					}
 					else{
 						response.send(result.rows[0]['content']);
+						done();
 					}
 				});
 			}
