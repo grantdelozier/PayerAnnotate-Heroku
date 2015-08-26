@@ -140,12 +140,13 @@ function saveVolumeAnnotations(successcb) {
                 return;
             }
             else {
-                console.log( xmlHttp.responseText );
+                //console.log( xmlHttp.responseText );
                 var logdiv = document.getElementById('logtext');
                 if (xmlHttp.responseText.indexOf("Error:") > 0) {
                     window.alert("There was an error attempting the save. Check logs")
                 }
                 else{
+                    annotationChanges = 0
                     logdiv.textContent = xmlHttp.responseText
                 }
                 return xmlHttp.responseText
@@ -154,31 +155,6 @@ function saveVolumeAnnotations(successcb) {
         xmlHttp.send( params );
     }, 0);
 
-    /*
-    var base64 = utf8ToB64(serialString);
-    var parse_file = new Parse.File((annotUser + "-" + selvol +".txt"), { base64: base64 });
-    // Save to Parse. First look for an existing entry for the user and volume.
-    // If found, update it. Else create a new entry.
-    var query = new Parse.Query(SpansObject)
-    query.equalTo("user", annotUser)
-    query.equalTo("vol", selvol)
-    query.first().then(function(existing) {
-        if (existing) {
-            existing.set("spans", parse_file)
-            return existing.save()
-        } else {
-            var spansObject = new SpansObject()
-            return spansObject.save({"user":annotUser, "vol":selvol, "spans":parse_file})
-        }
-    }, savefailure("finding existing entry")
-    ).then(savesuccess(function() {
-        annotationChanges = 0
-        logMessage("Saved " + annotations.length + " annotations (" +
-                   geometries + " geometries)")
-        if (successcb)
-            successcb()
-    }),
-        savefailure("saving new or updating existing entry"))*/
 }
 
 // Called from HTML. Save annotations. If saved successfully, reset list of
