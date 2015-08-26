@@ -93,7 +93,16 @@
     </style>
     <script>
         function endSession1() {
-            window.location.href = "https://payer-annotate.herokuapp.com/login"
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", '/logout', true );
+            if ( 4 != xmlHttp.readyState ) {
+                return;
+            }
+            else {
+                console.log(xmlHttp.responseText)
+                window.location.href = "https://payer-annotate.herokuapp.com/login"
+            }
+            xmlHttp.send();
         }
 
         function endSession2() {
