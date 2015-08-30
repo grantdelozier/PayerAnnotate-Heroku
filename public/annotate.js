@@ -254,7 +254,7 @@ function loadVolumeText(vol) {
             xmlHttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             var params = 'vol=' + selvol ;
             xmlHttp2.onreadystatechange = function () {
-                if ( 4 != xmlHttp.readyState ) {
+                if ( 4 != xmlHttp2.readyState ) {
                     //console.log("Get Annot Post Failed")
                     return;
                 }
