@@ -236,7 +236,7 @@ function loadVolumeText(vol) {
     console.log("selvol", selvol)
 
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("POST", '/annotate/gettext', false);
+    xmlHttp.open("POST", '/annotate/gettext', true);
     xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     var params = 'vol=' + selvol ;
     xmlHttp.onreadystatechange = function () {
@@ -250,11 +250,12 @@ function loadVolumeText(vol) {
             $("#col2text").html(xmlHttp.responseText)
             //$("#col2text").html(JSON.parse(xmlHttp.responseText)['content'])
             var xmlHttp2 = new XMLHttpRequest();
-            xmlHttp2.open("POST", '/annotate/getannot', false);
+            xmlHttp2.open("POST", '/annotate/getannot', true);
             xmlHttp2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             var params = 'vol=' + selvol ;
-            xmlHttp2.onreadystatechange = function () {
-                if ( 4 != xmlHttp.readyState ) {
+            xmlHttp2.onload = function (err) {
+                if ( err ) {
+                    console.log("Get Annot Post Failed")
                     return;
                 }
                 else {
