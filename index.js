@@ -151,7 +151,15 @@ app.post('/annotate/payer-annotate', function(request, response) {
 								}
 								else{
 									console.log("Saved Entry by ", request.session.username);
-									response.send("Saving Successful on vol " + request.body.vol)
+									client.query("UPDATE article_texts SET annotated = $1 WHERE id = $2;", [1, request.body.vol], function(err4, result){
+										if (err4){
+											response.send("Error:"+ err4)
+										}
+										else{
+											response.send("Saving Successful on vol " + request.body.vol)
+										}
+									});
+									
 								}
 							});
 						}
@@ -162,7 +170,14 @@ app.post('/annotate/payer-annotate', function(request, response) {
 								}
 								else{
 									console.log("Saved Entry by ", request.session.username);
-									response.send("Saving Successful on vol " + request.body.vol)
+									client.query("UPDATE article_texts SET annotated = $1 WHERE id = $2;", [1, request.body.vol], function(err4, result){
+										if (err4){
+											response.send("Error:"+ err4)
+										}
+										else{
+											response.send("Saving Successful on vol " + request.body.vol)
+										}
+									});
 								}
 							});
 						}
@@ -212,7 +227,7 @@ app.get('/annotate/getvoltablerows', function(request, response){
 				//response.send("Error:" + err)
 			}
 			else{
-				client.query("SELECT id, title from article_texts;", function(err2, result){
+				client.query("SELECT id, title, annotated from article_texts;", function(err2, result){
 					if (err2){
 						response.send("Error querying the DB");
 					}
