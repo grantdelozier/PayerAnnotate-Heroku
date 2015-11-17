@@ -355,6 +355,7 @@ function getVolTableRows(table){
                     for (var i = 0; i < json_response.length; i++) {
                         var id = json_response[i]['id']
                         var title = json_response[i]['title']
+                        var annotated = json_response[i]['annotated']
                         table.row.add([id, title]).draw();
                     }
                 }
