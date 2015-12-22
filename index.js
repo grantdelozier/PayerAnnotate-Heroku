@@ -368,17 +368,32 @@ app.post('/annotate/gettext', function(req, response) {
 			}
 			else{
 				var id = req.body.vol
-				console.log(id)
-				client.query("SELECT content from article_texts where id = $1;", [req.body.vol], function(err2, result){
-					if (err2){
-						console.error(err2)
-						done();
-					}
-					else{
-						response.send(result.rows[0]['content']);
-						done();
-					}
-				});
+				var page_type = req.body.page
+				console.log(id, page_type)
+				if (page_type == 'payer') {
+					client.query("SELECT content from article_texts where id = $1;", [req.body.vol], function(err2, result){
+						if (err2){
+							console.error(err2)
+							done();
+						}
+						else{
+							response.send(result.rows[0]['content']);
+							done();
+						}
+					});
+				}
+				else if (page_type == 'location'){
+					client.query("SELECT content from article_texts_location where id = $1;", [req.body.vol], function(err2, result){
+						if (err2){
+							console.error(err2)
+							done();
+						}
+						else{
+							response.send(result.rows[0]['content']);
+							done();
+						}
+					});
+				}
 			}
 		});
 	}

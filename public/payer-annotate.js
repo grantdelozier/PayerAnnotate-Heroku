@@ -4,6 +4,7 @@
 
 var payerApplier;
 var payerUnapplier;
+var page_type;
 
 var payerClass = "payer"
 var locClass = "location"
@@ -18,6 +19,9 @@ function addLocation() {
 }
 
 function init(page) {
+
+    page_type = page;
+
     commonInit(page)
 
     //SpansObject = Parse.Object.extend("NESpans");
