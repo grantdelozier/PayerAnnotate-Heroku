@@ -266,7 +266,7 @@ function submitPassword() {
     
 }
 
-function commonInit() {
+function commonInit(page) {
     //VolTextObject = Parse.Object.extend("VolumeText");
 
     rangy.init();
@@ -291,7 +291,7 @@ function commonInit() {
     }, 0);
 
     var table = $('#vol_table').DataTable()
-    getVolTableRows(table)
+    getVolTableRows(table, page)
     var table_payers = $('#payer_table').DataTable();
     getPayerTableRows(table_payers)
 

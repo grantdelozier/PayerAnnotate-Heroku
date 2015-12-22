@@ -6,19 +6,28 @@ var payerApplier;
 var payerUnapplier;
 
 var payerClass = "payer"
-var annotationClasses = [payerClass]
+var locClass = "location"
+var annotationClasses = [payerClass, locClass]
 
 function addPayer() {
     addFeature(payerClass, payerApplier)
 }
 
+function addLocation() {
+    addFeature(locclass, )
+}
 
-function init() {
-    commonInit()
+function init(page) {
+    commonInit(page)
 
     //SpansObject = Parse.Object.extend("NESpans");
 
     payerApplier = rangy.createClassApplier(payerClass, {
+        elementAttributes: {onclick:"spanClick(this)"},
+        normalize: false
+    });
+
+    locApplier = rangy.createClassApplier(locClass, {
         elementAttributes: {onclick:"spanClick(this)"},
         normalize: false
     });
@@ -28,13 +37,19 @@ function init() {
         normalize: true
     });
 
+    locUnapplier = rangy.createClassApplier(locClass, {
+        elementAttributes: {onclick:"spanClick(this)"},
+        normalize: true
+    });
+
 
     annotationClassesAndAppliers = [
-        {clazz: payerClass, applier: payerApplier, unapplier: payerUnapplier}
+        {clazz: payerClass, applier: payerApplier, unapplier: payerUnapplier}, {clazz: locclass, applier: locApplier, unapplier:locUnapplier}
     ]
 
     keyCodeActions = [
         {code: 65, action: addPayer},
+        {code: 67, action: addLocation},
         {code: 82, action: removeAnnotation}
     ]
 }

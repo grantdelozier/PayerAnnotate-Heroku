@@ -16,6 +16,12 @@
         .payer[select]{
             background-color: #66FFFF;
         }
+        .location {
+            background-color: green;
+        }
+        .location[select]{
+            background-color: #66FFFF;
+        }
 
         #xouter3{
 		width:90%;
@@ -122,20 +128,6 @@
                             window.location.href = "https://payer-annotate.herokuapp.com/login"
                         }
                     }
-                    /*if ( 4 != xmlHttp.readyState ) {
-                            return;
-                    }
-                    else {
-                        console.log(xmlHttp.response);
-                        //console.log( xmlHttp.responseText );
-                        //var logdiv = document.getElementById('logtext');
-                        //logdiv.textContent = xmlHttp.responseText
-                        //window.location.replace(xmlHttp.responseText);
-                        //return xmlHttp.responseText
-                        console.log(xmlHttp.responseText)
-                        window.location.href = "https://payer-annotate.herokuapp.com/login"
-                    }*/
-                    //xmlHttp.responseType = "document";
                     xmlHttp.send( null );
             }, 0);
         }
@@ -169,7 +161,7 @@
     <script src="/article-annotate.js"></script>
     <script src="/payer-annotate.js"></script>
 </head>
-    <body onload="init('payer')">
+    <body onload="init('location')">
         <div class="center_log">
             <p id="logtext"> </p>
             <button type="button" onclick="endSession1()">Logout</button>
@@ -214,9 +206,9 @@
             </div>
             <div id="xmiddlecol3">
                 <div id="xinner3">
-                     <button type="button" onclick="addPayer()">Add Payer(a)</button>      
+                     <button type="button" onclick="addPayer()">Add Payer(a)</button>
+                     <button type="button" onclick="addLocation()">Add Location(c)</button>      
                      <button type="button" onclick="removeAnnotation()">Remove Annotation (r)</button>
-                     <button type="button" onclick="applyGeoAll()">Quick Regex Search</button>
                      <button type="button" onclick="saveAnnotations()">Save Annotations</button>
                     <div id="col2text" contenteditable="" style="padding:5px">
                      </div>
@@ -237,4 +229,3 @@
         </div>
     </body>
 </html>
-<!-- vi:set sw=4: -->

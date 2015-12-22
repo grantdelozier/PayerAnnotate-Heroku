@@ -334,11 +334,16 @@ function getPayerTableRows(table){
 
 }
 
-function getVolTableRows(table){
+function getVolTableRows(table, page){
 
     setTimeout(function() {
         var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("GET", '/annotate/getvoltablerows', true);
+        if (page == 'payer'){
+            xmlHttp.open("GET", '/annotate/getvoltablerows-payer', true);
+        }
+        else if (page = 'location'){
+            xmlHttp.open("GET", '/annotate/getvoltablerows-location', true);
+        }
 
         xmlHttp.onreadystatechange = function () {
             if ( 4 != xmlHttp.readyState ) {

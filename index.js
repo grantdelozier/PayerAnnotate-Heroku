@@ -67,9 +67,11 @@ app.get('/login-status', function(request, response) {
 	}
 });
 
-app.get('/payer-annotate', function(request, response) {
+
+
+/*app.get('/payer-annotate', function(request, response) {
 	response.sendFile(path.join(annotateDir, 'payer-annotate.html'));
-});
+});*/
 
 app.get('/create-user', function(request, response) {
 	//response.redirect('./annotate/create-user.html');
@@ -218,7 +220,7 @@ app.get('/annotate/getpayertablerows', function(request, response){
 	}
 });
 
-app.get('/annotate/getvoltablerows', function(request, response){
+app.get('/annotate/getvoltablerows-payer', function(request, response){
 	if (request.session.username && request.session.password != null) {
 		pg.connect(process.env.DATABASE_URL+"?ssl=true", function(err, client, done) {
 			if (err) {
@@ -228,6 +230,32 @@ app.get('/annotate/getvoltablerows', function(request, response){
 			}
 			else{
 				client.query("SELECT id, title, annotated from article_texts;", function(err2, result){
+					if (err2){
+						response.send("Error querying the DB");
+					}
+					else{
+						response.send(result.rows)
+					}
+				});
+			}
+			done();
+		});
+	}
+	else{
+		response.send("Error: "+ "You are currently not logged in. Cannot get Table Rows")
+	}
+});
+
+app.get('/annotate/getvoltablerows-location', function(request, response){
+	if (request.session.username && request.session.password != null) {
+		pg.connect(process.env.DATABASE_URL+"?ssl=true", function(err, client, done) {
+			if (err) {
+				console.error(err)
+				response.send("ERROR Connecting to DB")
+				//response.send("Error:" + err)
+			}
+			else{
+				client.query("SELECT id, title, annotated from article_texts_location;", function(err2, result){
 					if (err2){
 						response.send("Error querying the DB");
 					}
@@ -307,6 +335,16 @@ app.post('/create-user', function(req, http_response) {
 			}
 		});
 	});
+});
+
+app.get('/annotate/location-annotate', function(request, response) {
+	if (request.session.username && request.session.password != null) {
+		console.log(req.session.username + " navigating to location annotate page")
+		response.sendFile(path.join(annotateDir, 'location-annotate.html'));
+	else{
+		console.log("invalid credentials")
+		response.send("<p>You are not logged in. You must log in before preceding.</p><p></p><p> Return to " + '<a href="' + '/login' + '">' + "the login page" + "</a></p>" );
+	}
 });
 
 app.get('/annotate/payer-annotate', function(req, response) {
