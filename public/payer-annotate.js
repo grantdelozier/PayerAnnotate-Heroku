@@ -15,7 +15,7 @@ function addPayer() {
 }
 
 function addLocation() {
-    addFeature(locclass, )
+    addFeature(locclass, locApplier)
 }
 
 function init(page) {
