@@ -337,9 +337,9 @@ app.post('/create-user', function(req, http_response) {
 	});
 });
 
-app.get('/annotate/location-annotate', function(req, response) {
+app.get('/annotate/location-annotate', function(request, response) {
 	if (request.session.username && request.session.password != null) {
-		console.log(req.session.username + " navigating to location annotate page")
+		console.log(request.session.username + " navigating to location annotate page")
 		response.sendFile(path.join(annotateDir, 'location-annotate.html'));
 	}
 	else{
