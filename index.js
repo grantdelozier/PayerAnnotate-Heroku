@@ -341,6 +341,7 @@ app.get('/annotate/location-annotate', function(request, response) {
 	if (request.session.username && request.session.password != null) {
 		console.log(req.session.username + " navigating to location annotate page")
 		response.sendFile(path.join(annotateDir, 'location-annotate.html'));
+	}
 	else{
 		console.log("invalid credentials")
 		response.send("<p>You are not logged in. You must log in before preceding.</p><p></p><p> Return to " + '<a href="' + '/login' + '">' + "the login page" + "</a></p>" );
