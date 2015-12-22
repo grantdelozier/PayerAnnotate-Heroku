@@ -52,27 +52,13 @@
             }, 0);
         }
 
-        function getNERPage(){
-
+        function getPayerPage(){
             window.location = "/annotate/payer-annotate"
 
-            /*setTimeout(function() {
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", '/annotate/payer-annotate', true );
-                if ( 4 != xmlHttp.readyState ) {
-                        return;
-                }
-                else {
-                    console.log(xmlHttp.response);
-                    //console.log( xmlHttp.responseText );
-                    //var logdiv = document.getElementById('logtext');
-                    //logdiv.textContent = xmlHttp.responseText
-                    window.location = xmlHttp.response
-                    //return xmlHttp.responseText
-                }
-                xmlHttp.responseType = "document";
-                xmlHttp.send( null );
-            }, 0);*/
+        }
+
+        function getLocationPage(){
+            window.location = "/annotate/location-annotate"
         }
     
 
@@ -155,8 +141,11 @@
 
         <div class="bottom_log" style="width:100%; overflow: hidden; text-align: center;">
             <form style="display: block; padding-top: 10px;">
-                <button type="button" onclick="getNERPage()" >Go to Payer Annotation Page</button>
+                <button type="button" onclick="getPayerPage()" >Go to Payer Annotation Page</button>
             </form>	
+            <form style="display: block; padding-top: 10px;">
+                <button type="button" onclick="getLocationPage()" >Go to Location Annotation Page</button>
+            </form> 
         </div>
 
     </body>
