@@ -50,7 +50,7 @@ function init(page) {
 
 
     annotationClassesAndAppliers = [
-        {clazz: payerClass, applier: payerApplier, unapplier: payerUnapplier}, {clazz: locclass, applier: locApplier, unapplier:locUnapplier}
+        {clazz: payerClass, applier: payerApplier, unapplier: payerUnapplier}, {clazz: locClass , applier: locApplier, unapplier:locUnapplier}
     ]
 
     keyCodeActions = [
