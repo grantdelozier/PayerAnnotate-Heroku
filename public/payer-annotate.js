@@ -4,6 +4,8 @@
 
 var payerApplier;
 var payerUnapplier;
+var locApplier;
+var locUnapplier;
 var page_type;
 
 var payerClass = "payer"
