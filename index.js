@@ -140,7 +140,8 @@ app.post('/annotate/payer-annotate', function(request, response) {
 			}
 			else{
 				console.log(request.body.vol);
-				console.log(request.body.annot);
+				//console.log(request.body.annot);
+				console.log(request.body.page);
 				client.query("SELECT volid from article_annotations where volid = $1;", [request.body.vol], function(err2, result){
 					if (err2){
 						response.send("Error:"+ err2)
@@ -153,14 +154,26 @@ app.post('/annotate/payer-annotate', function(request, response) {
 								}
 								else{
 									console.log("Saved Entry by ", request.session.username);
-									client.query("UPDATE article_texts SET annotated = $1 WHERE id = $2;", [1, request.body.vol], function(err4, result){
-										if (err4){
-											response.send("Error:"+ err4)
-										}
-										else{
-											response.send("Saving Successful on vol " + request.body.vol)
-										}
-									});
+									if (request.body.page == 'location') {
+										client.query("UPDATE article_texts_location SET annotated = $1 WHERE id = $2;", [1, request.body.vol], function(err4, result){
+											if (err4){
+												response.send("Error:"+ err4)
+											}
+											else{
+												response.send("Saving Successful on vol " + request.body.vol)
+											}
+										});
+									}
+									else if (request.body.page == 'payer'){
+										client.query("UPDATE article_texts SET annotated = $1 WHERE id = $2;", [1, request.body.vol], function(err4, result){
+											if (err4){
+												response.send("Error:"+ err4)
+											}
+											else{
+												response.send("Saving Successful on vol " + request.body.vol)
+											}
+										});
+									}
 									
 								}
 							});

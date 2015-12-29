@@ -134,7 +134,7 @@ function saveVolumeAnnotations(successcb) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open("POST", '/annotate/payer-annotate', true);
         xmlHttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        var params = 'vol=' + selvol + '&' + 'annot=' + serialString ;
+        var params = 'vol=' + selvol + '&' + 'annot=' + serialString + '&' + 'page='+page_type;
         xmlHttp.onreadystatechange = function () {
             if ( 4 != xmlHttp.readyState ) {
                 return;
